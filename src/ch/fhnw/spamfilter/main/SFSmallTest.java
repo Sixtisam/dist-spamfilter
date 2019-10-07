@@ -34,6 +34,10 @@ public class SFSmallTest {
 			wordStatistics.addSpamEmail(Collections.singleton("online"));
 		}
 
+		for (int i = 0; i < 52; i++) {
+			wordStatistics.addHamMail(Collections.singleton("sonstwas"));
+		}
+
 		ProbabilityCalculator calc = new ProbabilityCalculator(wordStatistics);
 
 		Set<String> words = new HashSet<>();
