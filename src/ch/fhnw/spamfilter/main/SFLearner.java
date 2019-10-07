@@ -8,7 +8,7 @@ import ch.fhnw.spamfilter.io.WordStatisticsStorage;
 public class SFLearner {
 
 	public static void main(String[] args) {
-		WordStatistics statistics = WordStatisticsStorage.readFromStorage();
+		WordStatistics statistics = new WordStatistics();
 
 		FileCollector.collectHamLearningMails()
 				.stream()
