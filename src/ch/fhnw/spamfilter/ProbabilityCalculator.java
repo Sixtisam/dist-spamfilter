@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 public class ProbabilityCalculator {
-	private long m_totalMailAmount;
 	private WordStatistics m_wordStatistics;
 
 	public BigDecimal checkSpam(Set<String> words) {
@@ -24,14 +23,14 @@ public class ProbabilityCalculator {
 		}
 
 		BigDecimal spamProbability = hamAmounts.stream()
-											   .map(a -> a.divide(m_totalMailAmount))
-											   .reduce(1, (a, b) -> a.multiply(b);
-		
-		BigDecimal hamProbability = spamAmounts.stream()
-											   .map(a -> a.divide(m_totalMailAmount))
-											   .reduce(1, (a, b) -> a.multiply(b));
+				.map(a -> a.divide(BigDecimal.valueOf(m_wordStatistics.getTotalAmount())))
+				.reduce(BigDecimal.ONE, (a, b) -> a.multiply(b));
 
-		return spamProbability.divide(spamProbability.add(hamProbability);
+		BigDecimal hamProbability = spamAmounts.stream()
+				.map(a -> a.divide(BigDecimal.valueOf(m_wordStatistics.getTotalAmount())))
+				.reduce(BigDecimal.ONE, (a, b) -> a.multiply(b));
+
+		return spamProbability.divide(spamProbability.add(hamProbability));
 	}
 
 }

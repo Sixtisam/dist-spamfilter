@@ -1,5 +1,6 @@
 package ch.fhnw.spamfilter.io;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -11,6 +12,9 @@ public class WordStatisticsStorage {
 	public static final String STORAGE_PATH = "word_statistics.obj";
 
 	public static WordStatistics readFromStorage() {
+		if (!(new File(STORAGE_PATH)).exists()) {
+			return new WordStatistics();
+		}
 		try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(STORAGE_PATH))) {
 			Object obj = inputStream.readObject();
 			if (obj instanceof WordStatistics) {
