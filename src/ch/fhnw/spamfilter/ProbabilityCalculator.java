@@ -37,8 +37,6 @@ public class ProbabilityCalculator {
 		BigDecimal hamProbability = hamProbs.stream()
 				.reduce(BigDecimal.ONE, (a, b) -> a.multiply(b));
 
-//		System.out.println("SpamProb: " + spamProbability.toPlainString());
-//		System.out.println("HamProb: " + hamProbability.toPlainString());
 		return spamProbability.divide(spamProbability.add(hamProbability), 100, RoundingMode.HALF_DOWN);
 	}
 

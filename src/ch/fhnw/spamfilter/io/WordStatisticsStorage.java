@@ -11,6 +11,11 @@ import ch.fhnw.spamfilter.WordStatistics;
 public class WordStatisticsStorage {
 	public static final String STORAGE_PATH = "word_statistics.obj";
 
+	/**
+	 * Reads the word statistics from the filesystem
+	 * 
+	 * @return the read word statistics or an empty, if it does not exists yet.
+	 */
 	public static WordStatistics readFromStorage() {
 		if (!(new File(STORAGE_PATH)).exists()) {
 			return new WordStatistics();
@@ -27,6 +32,11 @@ public class WordStatisticsStorage {
 		}
 	}
 
+	/**
+	 * Writes the passed word statistics to the filesystem
+	 * 
+	 * @param statistics
+	 */
 	public static void writeToStorage(WordStatistics statistics) {
 		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(STORAGE_PATH))) {
 			out.writeObject(statistics);
