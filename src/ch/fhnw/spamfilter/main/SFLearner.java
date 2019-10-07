@@ -18,7 +18,7 @@ public class SFLearner {
 					System.out.println("Ham-Mail learned");
 				});
 
-		FileCollector.collectHamLearningMails()
+		FileCollector.collectSpamLearningMails()
 				.stream()
 				.map(MailParser::parseMail)
 				.forEach(words -> {

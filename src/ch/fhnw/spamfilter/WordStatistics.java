@@ -10,8 +10,8 @@ public class WordStatistics implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private long m_totalAmount;
-	private Map<String, BigDecimal> m_hamCount = new HashMap<String, BigDecimal>();
-	private Map<String, BigDecimal> m_spamCount = new HashMap<String, BigDecimal>();
+	private HashMap<String, BigDecimal> m_hamCount = new HashMap<String, BigDecimal>();
+	private HashMap<String, BigDecimal> m_spamCount = new HashMap<String, BigDecimal>();
 
 	public void addSpamEmail(Set<String> words) {
 		m_totalAmount++;
@@ -44,11 +44,11 @@ public class WordStatistics implements Serializable {
 	}
 
 	public BigDecimal getHamCount(String word) {
-		return m_hamCount.get(word);
+		return m_hamCount.getOrDefault(word, BigDecimal.ZERO);
 	}
 
 	public BigDecimal getSpamCount(String word) {
-		return m_spamCount.get(word);
+		return m_spamCount.getOrDefault(word, BigDecimal.ZERO);
 	}
 
 	public long getTotalAmount() {

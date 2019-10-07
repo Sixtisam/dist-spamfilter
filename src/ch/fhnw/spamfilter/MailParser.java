@@ -23,7 +23,7 @@ public class MailParser {
 		try (Scanner scan = new Scanner(in)) {
 			while (scan.hasNext() && scan.hasNextLine()) {
 				String line = scan.nextLine();
-				words.addAll(Arrays.asList(line.split("\\s+")));
+				words.addAll(Arrays.asList(line.split(" ")));
 			}
 			in.close();
 		} catch (Exception ex) {
