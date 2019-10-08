@@ -12,21 +12,25 @@ import ch.fhnw.spamfilter.WordStatistics;
 import ch.fhnw.spamfilter.io.FileCollector;
 import ch.fhnw.spamfilter.io.WordStatisticsStorage;
 
-public class SFCalibration {
+public class SFCalibrationHam {
 
 	public static void main(String[] args) {
 		WordStatistics statistics = WordStatisticsStorage.readFromStorage();
 		ProbabilityCalculator probCal = new ProbabilityCalculator(statistics);
-		ArrayList<File> files_list = FileCollector.collectSpamLearningMails();
+		ArrayList<File> files_list = FileCollector.collectHamCalibrationMails();
 		BigDecimal sumSpamProbability = new BigDecimal(0);
 		BigDecimal numberOfMails = new BigDecimal(files_list.size());
 		BigDecimal minSpamProbability = new BigDecimal(1);
 		BigDecimal maxSpamProbability = new BigDecimal(0);
 
+		System.out.println("Alle Wahrscheinlichkeiten der 'ham-kalibrierung'-Mails, welche ungleich 0");
+		System.out.println("------------------------------------------------");
 		for (File fileEntry : files_list) {
 			Set<String> words = MailParser.parseMail(fileEntry);
 			BigDecimal prob = probCal.checkSpam(words);
-
+			if (prob.compareTo(BigDecimal.ZERO) != 0) {
+				System.out.println(prob.toPlainString());
+			}
 			// keep min probability
 			if (minSpamProbability.compareTo(prob) > 0) {
 				minSpamProbability = prob;
@@ -38,8 +42,12 @@ public class SFCalibration {
 			}
 			sumSpamProbability = sumSpamProbability.add(prob);
 		}
-		System.out.println(sumSpamProbability.divide(numberOfMails, 100, RoundingMode.HALF_DOWN).toPlainString());
-		System.out.println(minSpamProbability.toPlainString());
-		System.out.println(maxSpamProbability.toPlainString());
+
+		System.out.println("------------------------------------------------");
+		System.out.println("Aggregiert");
+		System.out.println(
+				"AVG: " + sumSpamProbability.divide(numberOfMails, 100, RoundingMode.HALF_DOWN).toPlainString());
+		System.out.println("MIN: " + minSpamProbability.toPlainString());
+		System.out.println("MAX: " + maxSpamProbability.toPlainString());
 	}
 }
