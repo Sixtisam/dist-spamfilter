@@ -14,18 +14,19 @@ public class ProbabilityCalculator {
 	}
 
 	public BigDecimal checkSpam(Set<String> words) {
-		final BigDecimal mailAmount = BigDecimal.valueOf(m_wordStatistics.getTotalAmount());
+		final BigDecimal SpamAmount = BigDecimal.valueOf(m_wordStatistics.getTotalSpamAmount());
+		final BigDecimal HamAmount = BigDecimal.valueOf(m_wordStatistics.getTotalHamAmount());
 
 		List<BigDecimal> hamProbs = new ArrayList<>();
 		List<BigDecimal> spamProbs = new ArrayList<>();
 		for (String w : words) {
 			// calculate probability P(w|H)
 			BigDecimal hamProb = m_wordStatistics.getHamCount(w)
-					.divide(mailAmount, 100, RoundingMode.HALF_DOWN);
+					.divide(HamAmount, 100, RoundingMode.HALF_DOWN);
 
 			// calculate probability P(w|S)
 			BigDecimal spamProb = m_wordStatistics.getSpamCount(w)
-					.divide(mailAmount, 100, RoundingMode.HALF_DOWN);
+					.divide(SpamAmount, 100, RoundingMode.HALF_DOWN);
 
 			hamProbs.add(hamProb);
 			spamProbs.add(spamProb);

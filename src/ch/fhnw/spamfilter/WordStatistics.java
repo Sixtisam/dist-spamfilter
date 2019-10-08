@@ -11,7 +11,8 @@ public class WordStatistics implements Serializable {
 	/**
 	 * Total amount of mails which were learned from
 	 */
-	private long m_totalAmount;
+	private long m_totalSpamAmount;
+	private long m_totalHamAmount;
 	/**
 	 * For already found word, the number of HAM mails in which the word appeared.
 	 */
@@ -22,7 +23,7 @@ public class WordStatistics implements Serializable {
 	private HashMap<String, BigDecimal> m_spamCount = new HashMap<String, BigDecimal>();
 
 	public void addSpamEmail(Set<String> words) {
-		m_totalAmount++;
+		m_totalSpamAmount++;
 		for (String w : words) {
 			if (m_spamCount.get(w) != null) {
 				m_spamCount.put(w, m_spamCount.get(w).add(BigDecimal.ONE));
@@ -33,7 +34,7 @@ public class WordStatistics implements Serializable {
 	}
 
 	public void addHamMail(Set<String> words) {
-		m_totalAmount++;
+		m_totalHamAmount++;
 		for (String w : words) {
 			if (m_hamCount.get(w) != null) {
 				m_hamCount.put(w, m_hamCount.get(w).add(BigDecimal.ONE));
@@ -68,7 +69,11 @@ public class WordStatistics implements Serializable {
 		return m_spamCount.getOrDefault(word, NEAR_ZERO);
 	}
 
-	public long getTotalAmount() {
-		return m_totalAmount;
+	public long getTotalSpamAmount() {
+		return m_totalSpamAmount;
 	}
+	
+	public long getTotalHamAmount() {
+        return m_totalHamAmount;
+    }
 }

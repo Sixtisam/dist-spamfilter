@@ -11,7 +11,7 @@ import ch.fhnw.spamfilter.io.FileCollector;
 import ch.fhnw.spamfilter.io.WordStatisticsStorage;
 
 public class SFDecider {
-	public static final BigDecimal SPAM_PROBABILITY_TRHESHOLD = new BigDecimal("0.9");
+	public static final BigDecimal SPAM_PROBABILITY_TRHESHOLD = new BigDecimal("0.7");
 
 	public static void main(String[] args) {
 		WordStatistics statistics = WordStatisticsStorage.readFromStorage();
