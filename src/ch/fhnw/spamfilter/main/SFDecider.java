@@ -11,7 +11,7 @@ import ch.fhnw.spamfilter.io.FileCollector;
 import ch.fhnw.spamfilter.io.WordStatisticsStorage;
 
 public class SFDecider {
-	public static final BigDecimal SPAM_PROBABILITY_TRHESHOLD = new BigDecimal("0.5");
+	public static final BigDecimal SPAM_PROBABILITY_TRHESHOLD = new BigDecimal("0.7");
 
 	public static void main(String[] args) {
 		WordStatistics statistics = WordStatisticsStorage.readFromStorage();
@@ -20,7 +20,7 @@ public class SFDecider {
 		int wrong = 0; // counts wrongly classified mails
 		int correct = 0; // counts correctly classified mails
 		
-		System.out.println("The test are run with a threshold of " + SPAM_PROBABILITY_THRESHOLD + " and an Alpha of 1/2");
+		System.out.println("The test are run with a threshold of " + SPAM_PROBABILITY_TRHESHOLD.toPlainString() + " and an Alpha of 1/2");
 
 		System.out.println("Running test for spam mails....");
 		// check each spam mail and increment the corresponding counter
