@@ -14,7 +14,7 @@ public class WordStatisticsStorage {
 	/**
 	 * Reads the word statistics from the filesystem
 	 * 
-	 * @return the read word statistics or an empty, if it does not exists yet.
+	 * @return the read word statistics or an empty word statistics, if it does not exists yet.
 	 */
 	public static WordStatistics readFromStorage() {
 		if (!(new File(STORAGE_PATH)).exists()) {
