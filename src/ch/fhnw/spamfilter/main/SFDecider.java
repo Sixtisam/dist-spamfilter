@@ -19,7 +19,8 @@ public class SFDecider {
 
 		int wrong = 0; // counts wrongly classified mails
 		int correct = 0; // counts correctly classified mails
-		
+
+		System.out.println("-- Settings ---------------------------------------------");
 		System.out.println("Alpha: " + WordStatistics.ALPHA.toPlainString());
 		System.out.println("Schwellenwert: " + SPAM_PROBABILITY_TRHESHOLD.toPlainString());
 		System.out.println("----------------------------------------------------------");

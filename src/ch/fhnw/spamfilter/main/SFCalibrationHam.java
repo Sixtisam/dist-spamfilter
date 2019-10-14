@@ -12,6 +12,11 @@ import ch.fhnw.spamfilter.WordStatistics;
 import ch.fhnw.spamfilter.io.FileCollector;
 import ch.fhnw.spamfilter.io.WordStatisticsStorage;
 
+/**
+ * Calibration for ham emails checks all calibration emails and prints out all values which are not 1
+ * Also shows the average min and max.
+ *
+ */
 public class SFCalibrationHam {
 
 	public static void main(String[] args) {

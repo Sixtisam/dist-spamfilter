@@ -8,6 +8,10 @@ import ch.fhnw.spamfilter.WordStatistics;
 import ch.fhnw.spamfilter.io.FileCollector;
 import ch.fhnw.spamfilter.io.WordStatisticsStorage;
 
+/**
+ * Learns all available spam and ham emails and store that statistics
+ *
+ */
 public class SFLearner {
 
 	public static void main(String[] args) {
@@ -28,7 +32,7 @@ public class SFLearner {
 				.stream()
 				.map(MailParser::parseMail)
 				.forEach(words -> {
-					statistics.addSpamEmail(words);
+					statistics.addSpamMail(words);
 				});
 		System.out.println("Learned " + spamFiles.size() + " spam emails");
 		

@@ -5,24 +5,35 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * Statistics for word appearance in emails
+ *
+ */
 public class WordStatistics implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Total amount of mails which were learned from
+	 * Amount of spam emails learned from
 	 */
 	private long m_totalSpamAmount;
+	/**
+	 * Amount of ham emails learned from.
+	 */
 	private long m_totalHamAmount;
 	/**
-	 * For already found word, the number of HAM mails in which the word appeared.
+	 * For every word, the number of HAM mails in which the word appeared.
 	 */
 	private HashMap<String, BigDecimal> m_hamCount = new HashMap<String, BigDecimal>();
 	/**
-	 * For already found word, the number of SPAM mails in which the word appeared.
+	 * For every word, the number of SPAM mails in which the word appeared.
 	 */
 	private HashMap<String, BigDecimal> m_spamCount = new HashMap<String, BigDecimal>();
 
-	public void addSpamEmail(Set<String> words) {
+	/**
+	 * Add an email classified as "spam" to the statistics
+	 * @param words
+	 */
+	public void addSpamMail(Set<String> words) {
 		m_totalSpamAmount++;
 		for (String w : words) {
 			if (m_spamCount.get(w) != null) {
@@ -33,6 +44,10 @@ public class WordStatistics implements Serializable {
 		}
 	}
 
+	/**
+	 * Add an email classified as "spam" to the statistics
+	 * @param words
+	 */
 	public void addHamMail(Set<String> words) {
 		m_totalHamAmount++;
 		for (String w : words) {
@@ -52,7 +67,7 @@ public class WordStatistics implements Serializable {
 
 	/**
 	 * Returns the number of HAM mails in which the word 'word' was found. In case
-	 * word is not already known, a value near zero is returned to prevent getting
+	 * the word is not already known, ALPHA is returned to prevent
 	 * zero probability.
 	 */
 	public BigDecimal getHamCount(String word) {
@@ -61,7 +76,7 @@ public class WordStatistics implements Serializable {
 
 	/**
 	 * * Returns the number of SPAM mails in which the word 'word' was found. In
-	 * case word is not already known, a value near zero is returned to prevent
+	 * case the word is not already known, ALPHA is returned to prevent
 	 * getting zero probability.
 	 * 
 	 */

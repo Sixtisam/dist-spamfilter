@@ -10,6 +10,9 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class MailParser {
+	/**
+	 * @see #parseMail(InputStream)
+	 */
 	public static Set<String> parseMail(File mail) {
 		try {
 			return parseMail(new FileInputStream(mail));
@@ -18,6 +21,13 @@ public class MailParser {
 		}
 	}
 
+	/**
+	 * Reads in an email and returns a set containing all words that appear in that
+	 * email
+	 * 
+	 * @param mail
+	 * @return
+	 */
 	public static Set<String> parseMail(InputStream in) {
 		Set<String> words = new HashSet<>();
 		try (Scanner scan = new Scanner(in)) {

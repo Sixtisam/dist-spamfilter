@@ -3,6 +3,10 @@ package ch.fhnw.spamfilter.io;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * Utility class which makes the different mail folders available
+ *
+ */
 public class FileCollector {
 	final static File FOLDER_LEARN_HAM = new File("ham-anlern");
 	final static File FOLDER_LEARN_SPAM = new File("spam-anlern");

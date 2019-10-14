@@ -15,8 +15,9 @@ public class ProbabilityCalculator {
 
 	
 	/**
-	 * @param words All words appearing in the checked emails
-	 * @return Probability that this email is spam
+	 * Takes all words of an email and returns the calculated spam probability.
+	 * @param words All words appearing in a email
+	 * @return Probability that this email is spam (between 0 and 1)
 	 */
 	public BigDecimal checkSpam(Set<String> words) {
 		final BigDecimal SpamAmount = BigDecimal.valueOf(m_wordStatistics.getTotalSpamAmount());

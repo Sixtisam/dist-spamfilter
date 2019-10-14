@@ -8,9 +8,9 @@ import ch.fhnw.spamfilter.ProbabilityCalculator;
 import ch.fhnw.spamfilter.WordStatistics;
 
 /**
- * Test case which checks if our formular is correctly implemented
+ * Test case which checks if our probability formula is correctly implemented
  * 
- * http://www.math.kit.edu/ianm4/~ritterbusch/seite/spam/de
+ * Formular from http://www.math.kit.edu/ianm4/~ritterbusch/seite/spam/de
  * 
  * @author Samuel Keusch, Florian Schärer, Stefan Landös
  *
@@ -28,10 +28,10 @@ public class SFSmallTest {
 		}
 
 		for (int i = 0; i < 7; i++) {
-			wordStatistics.addSpamEmail(Collections.singleton("haben"));
+			wordStatistics.addSpamMail(Collections.singleton("haben"));
 		}
 		for (int i = 0; i < 8; i++) {
-			wordStatistics.addSpamEmail(Collections.singleton("online"));
+			wordStatistics.addSpamMail(Collections.singleton("online"));
 		}
 
 		for (int i = 0; i < 52; i++) {
