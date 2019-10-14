@@ -48,7 +48,7 @@ public class WordStatistics implements Serializable {
 	 * A value for words that are not yet in HAM or SPAM statistics. It can't be 0
 	 * because otherwise, probability would become 0.
 	 */
-	public final static BigDecimal NEAR_ZERO = new BigDecimal("0.0000000000000000000001");
+	public final static BigDecimal ALPHA = new BigDecimal("0.0000000000000000000001");
 
 	/**
 	 * Returns the number of HAM mails in which the word 'word' was found. In case
@@ -56,7 +56,7 @@ public class WordStatistics implements Serializable {
 	 * zero probability.
 	 */
 	public BigDecimal getHamCount(String word) {
-		return m_hamCount.getOrDefault(word, NEAR_ZERO);
+		return m_hamCount.getOrDefault(word, ALPHA);
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class WordStatistics implements Serializable {
 	 * 
 	 */
 	public BigDecimal getSpamCount(String word) {
-		return m_spamCount.getOrDefault(word, NEAR_ZERO);
+		return m_spamCount.getOrDefault(word, ALPHA);
 	}
 
 	public long getTotalSpamAmount() {

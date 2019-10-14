@@ -13,6 +13,11 @@ public class ProbabilityCalculator {
 		m_wordStatistics = statistics;
 	}
 
+	
+	/**
+	 * @param words All words appearing in the checked emails
+	 * @return Probability that this email is spam
+	 */
 	public BigDecimal checkSpam(Set<String> words) {
 		final BigDecimal SpamAmount = BigDecimal.valueOf(m_wordStatistics.getTotalSpamAmount());
 		final BigDecimal HamAmount = BigDecimal.valueOf(m_wordStatistics.getTotalHamAmount());
@@ -31,13 +36,14 @@ public class ProbabilityCalculator {
 			hamProbs.add(hamProb);
 			spamProbs.add(spamProb);
 		}
-
+		// Product of all P(w|S)
 		BigDecimal spamProbability = spamProbs.stream()
 				.reduce(BigDecimal.ONE, (a, b) -> a.multiply(b));
-
+		// Product of all P(w|H)
 		BigDecimal hamProbability = hamProbs.stream()
 				.reduce(BigDecimal.ONE, (a, b) -> a.multiply(b));
-
+		
+		// Formula of Probability Spam
 		return spamProbability.divide(spamProbability.add(hamProbability), 100, RoundingMode.HALF_DOWN);
 	}
 
